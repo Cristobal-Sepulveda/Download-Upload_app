@@ -1,0 +1,25 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+
+
+    <dimen name="default_text_size">20sp</dimen>
+
+    <!-- Dimensions for spacing Between View's-->
+    <dimen name="spacing_normal">16dp</dimen>
+    <dimen name="spacing_very_small">4dp</dimen>
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_normal_low">12dp</dimen>
+    <dimen name="spacing_normal_high">20dp</dimen>
+    <dimen name="spacing_big_low">24dp</dimen>
+
+    <!-- Dimensions to draw the edges of the button-->
+    <dimen name="clipRectRight">380dp</dimen>
+    <dimen name="clipRectBottom">70dp</dimen>
+    <dimen name="clipRectTop">0dp</dimen>
+    <dimen name="clipRectLeft">0dp</dimen>
+
+    <!-- Size of the button text-->
+    <dimen name="textSize">30sp</dimen>
+    <dimen name="textOffset">45dp</dimen>
+    <dimen name="strokeWidth">4dp</dimen>
+</resources>
