@@ -31,6 +31,7 @@
             android:layout_marginTop="@dimen/spacing_normal_high"
             >
             <RadioGroup
+                android:id="@+id/buttonGroup_radioGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_normal"
@@ -38,22 +39,25 @@
                 android:layout_marginEnd="@dimen/spacing_very_small"
                 android:layout_marginBottom="60dp">
 
-                <RadioButton
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/glide_radioButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/spacing_normal" />
 
-                <RadioButton
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/loadApp_radioButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="26dp" />
 
-                <RadioButton
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/retrofit_radioButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="62dp" />
-            </RadioGroup>
 
+            </RadioGroup>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -82,17 +86,26 @@
                     android:textAppearance="?attr/textAppearanceHeadline5" />
             </LinearLayout>
         </LinearLayout>
+
+            <com.udacity.LoadingButton
+                android:id="@+id/custom_button"
+                android:layout_width="300dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                />
+        <Button
+            android:id="@+id/clear_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/clear"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/spacing_small"/>
+
+
     </LinearLayout>
-    <com.udacity.LoadingButton
-        android:id="@+id/custom_button"
-        android:layout_width="380dp"
-        android:layout_height="70dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="@dimen/spacing_big_low"
-        android:elevation="@dimen/spacing_very_small"
-        />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

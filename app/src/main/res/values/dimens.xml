@@ -13,7 +13,7 @@
     <dimen name="spacing_big_low">24dp</dimen>
 
     <!-- Dimensions to draw the edges of the button-->
-    <dimen name="clipRectRight">380dp</dimen>
+    <dimen name="clipRectRight">300dp</dimen>
     <dimen name="clipRectBottom">70dp</dimen>
     <dimen name="clipRectTop">0dp</dimen>
     <dimen name="clipRectLeft">0dp</dimen>
