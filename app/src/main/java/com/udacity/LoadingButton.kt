@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
+import android.app.NotificationManager
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
@@ -12,6 +13,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.animation.LinearInterpolator
 import android.widget.RadioGroup
+import androidx.core.content.ContextCompat
 import androidx.core.content.withStyledAttributes
 import kotlinx.android.synthetic.main.content_main.view.*
 import kotlin.properties.Delegates
@@ -67,6 +69,11 @@ class LoadingButton @JvmOverloads constructor(context: Context,
                     ButtonState.Completed -> stopAnimator()
                 }
             }
+    private val notificationManager =
+            ContextCompat.getSystemService(
+                    context,
+                    NotificationManager::class.java
+            )as NotificationManager
 
     init {
 
@@ -83,8 +90,6 @@ class LoadingButton @JvmOverloads constructor(context: Context,
         }
 
     }
-
-
 
     /** This method is to drawText on the button*/
     private fun drawUnanimedButton(canvas: Canvas){
@@ -128,7 +133,14 @@ class LoadingButton @JvmOverloads constructor(context: Context,
         valueAnimator.addUpdateListener {
             animatedWidth = it.animatedValue as Float
             invalidate()
-            if(it.animatedValue == width.toFloat())custom_button.buttonState = ButtonState.Completed
+            if(it.animatedValue == width.toFloat()){
+                //TODO 2.2
+                notificationManager.sendNotification(
+                        context.getString(R.string.notification_title),
+                        context
+                )
+                custom_button.buttonState = ButtonState.Completed
+            }
         }
         valueAnimator.start()
     }

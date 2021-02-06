@@ -1,18 +1,20 @@
 package com.udacity
 
-import android.app.DownloadManager
-import android.app.NotificationManager
-import android.app.PendingIntent
+import android.app.*
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.Color
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat.getSystemService
+import com.udacity.utils.Constants
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
@@ -39,6 +41,8 @@ class MainActivity : AppCompatActivity() {
             retrofit_radioButton.isChecked = false
             buttonGroup_radioGroup.clearCheck()
         }
+        /** <>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
         /** >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
         custom_button.setOnClickListener {
             if (buttonGroup_radioGroup.checkedRadioButtonId == -1) {
@@ -72,6 +76,11 @@ class MainActivity : AppCompatActivity() {
 
         }
         /** <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+
+        /** Creating a notification channel, the channel id is the same as the channel id used
+         * in the builder in NotificationManager.sendNotification Method*/
+        //TODO 2.4
+        createChannel(Constants.DOWNLOAD_CHANNEL_ID,Constants.DOWNLOAD_CHANNEL_NAME)
 }
 
 
@@ -94,6 +103,35 @@ class MainActivity : AppCompatActivity() {
         downloadID =
             downloadManager.enqueue(request)// enqueue puts the download request in the queue.
     }
+
+    //TODO 2.3
+    private fun createChannel(channelId: String, channelName: String) {
+        //START create a channel
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // Create channel to show notifications.
+            val notificationChannel = NotificationChannel(
+                    channelId,
+                    channelName,
+                    NotificationManager.IMPORTANCE_HIGH
+            )
+                    .apply {
+                        setShowBadge(false)
+                    }
+
+            notificationChannel.enableLights(true)
+            notificationChannel.lightColor = Color.RED
+            notificationChannel.enableVibration(true)
+            notificationChannel.description = "amaya"
+
+            val notificationManager = applicationContext.getSystemService(
+                    NotificationManager::class.java
+            )
+
+            notificationManager.createNotificationChannel(notificationChannel)
+
+        }
+    }
+
 
     companion object {
         private const val URL =
