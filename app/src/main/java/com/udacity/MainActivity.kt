@@ -9,11 +9,9 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
-import androidx.core.content.ContextCompat.getSystemService
 import com.udacity.utils.Constants
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -70,7 +68,6 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 /*            download(ID)*/
-
                 custom_button.buttonState = ButtonState.Loading
             }
 
@@ -81,7 +78,7 @@ class MainActivity : AppCompatActivity() {
          * in the builder in NotificationManager.sendNotification Method*/
         //TODO 2.4
         createChannel(Constants.DOWNLOAD_CHANNEL_ID,Constants.DOWNLOAD_CHANNEL_NAME)
-}
+    }
 
 
     private val receiver = object : BroadcastReceiver() {

@@ -1,8 +1,5 @@
 package com.udacity
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
-import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.app.NotificationManager
 import android.content.Context
@@ -12,9 +9,10 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
 import android.view.animation.LinearInterpolator
-import android.widget.RadioGroup
 import androidx.core.content.ContextCompat
-import androidx.core.content.withStyledAttributes
+import com.udacity.ButtonState
+import com.udacity.R
+import com.udacity.sendNotification
 import kotlinx.android.synthetic.main.content_main.view.*
 import kotlin.properties.Delegates
 

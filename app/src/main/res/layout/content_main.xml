@@ -9,104 +9,75 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
-    <LinearLayout
+
+    <ImageView
+        android:id="@+id/cloudDownload_imageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:src="@drawable/baseline_cloud_download_24"
+        app:tint="@color/lila"
+        android:background="@color/colorPrimaryDark"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-        <ImageView
-            android:id="@+id/cloudDownload_imageView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/baseline_cloud_download_24"
-            app:tint="@color/lila"
-            android:background="@color/colorPrimaryDark"
-            />
-        <LinearLayout
-            android:id="@+id/listOfOptions_linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/spacing_normal_high"
-            >
-            <RadioGroup
-                android:id="@+id/buttonGroup_radioGroup"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_normal"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="@dimen/spacing_very_small"
-                android:layout_marginBottom="60dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
-                <androidx.appcompat.widget.AppCompatRadioButton
-                    android:id="@+id/glide_radioButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/spacing_normal" />
+    <RadioGroup
+        android:id="@+id/buttonGroup_radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cloudDownload_imageView"
+        app:layout_constraintBottom_toTopOf="@+id/custom_button"
+        android:padding="@dimen/spacing_normal"
+        >
 
-                <androidx.appcompat.widget.AppCompatRadioButton
-                    android:id="@+id/loadApp_radioButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="26dp" />
-
-                <androidx.appcompat.widget.AppCompatRadioButton
-                    android:id="@+id/retrofit_radioButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="62dp" />
-
-            </RadioGroup>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/spacing_very_small"
-                android:layout_marginEnd="@dimen/spacing_normal"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/spacing_normal"
-                    android:text="@string/glideInfo_textView"
-                    android:textAppearance="?attr/textAppearanceHeadline5" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/spacing_normal"
-                    android:text="@string/loadAppInfo_textView"
-                    android:textAppearance="?attr/textAppearanceHeadline5" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/retrofitInfo_textView"
-                    android:textAppearance="?attr/textAppearanceHeadline5" />
-            </LinearLayout>
-        </LinearLayout>
-
-            <com.udacity.LoadingButton
-                android:id="@+id/custom_button"
-                android:layout_width="300dp"
-                android:layout_height="70dp"
-                android:layout_gravity="center"
-                />
-        <Button
-            android:id="@+id/clear_button"
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/glide_radioButton"
+            android:text="@string/glideInfoText_radioButton"
+            android:textAppearance="?attr/textAppearanceHeadline6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/clear"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/spacing_small"/>
+            android:layout_marginBottom="@dimen/spacing_small"
+            />
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/loadApp_radioButton"
+            android:text="@string/loadAppInfoText_radioButton"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_small"
+            />
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/retrofit_radioButton"
+            android:text="@string/retrofitInfoText_radioButton"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </RadioGroup>
 
+    <com.udacity.LoadingButton
+        android:id="@+id/custom_button"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonGroup_radioGroup"
+        app:layout_constraintBottom_toTopOf="@id/clear_button"
+        />
 
-    </LinearLayout>
-
-
-
-
+    <Button
+        android:id="@+id/clear_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/clear"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/custom_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
