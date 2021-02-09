@@ -6,8 +6,10 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.renderscript.Sampler
 import android.util.AttributeSet
 import android.view.View
+import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import androidx.core.content.ContextCompat
 import com.udacity.ButtonState
@@ -16,7 +18,6 @@ import com.udacity.sendNotification
 import kotlinx.android.synthetic.main.content_main.view.*
 import kotlin.properties.Delegates
 
-private const val ANIMATION_DURATION: Long = 5000
 
 /** The JvmOverloads instructs the Kotlin compiler to generate overloads for this function
  * that substitute default parameter values */
@@ -67,11 +68,7 @@ class LoadingButton @JvmOverloads constructor(context: Context,
                     ButtonState.Completed -> stopAnimator()
                 }
             }
-    private val notificationManager =
-            ContextCompat.getSystemService(
-                    context,
-                    NotificationManager::class.java
-            )as NotificationManager
+
 
     init {
 
@@ -125,20 +122,13 @@ class LoadingButton @JvmOverloads constructor(context: Context,
     }
 
     private fun setAnimator() {
-        valueAnimator.duration = ANIMATION_DURATION
+        valueAnimator.duration = 3000
+        valueAnimator.repeatCount= ValueAnimator.INFINITE
         valueAnimator.interpolator = LinearInterpolator()
-        valueAnimator.setFloatValues(0.0f, width.toFloat())
+        valueAnimator.setFloatValues(0f, width.toFloat())
         valueAnimator.addUpdateListener {
             animatedWidth = it.animatedValue as Float
             invalidate()
-            if(it.animatedValue == width.toFloat()){
-                //TODO 2.2
-                notificationManager.sendNotification(
-                        context.getString(R.string.notification_title),
-                        context
-                )
-                custom_button.buttonState = ButtonState.Completed
-            }
         }
         valueAnimator.start()
     }

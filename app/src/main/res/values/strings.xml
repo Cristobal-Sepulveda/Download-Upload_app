@@ -8,8 +8,9 @@
 
     <!-- Notification Text's-->
     <string name="notification_title">Udacity: Android Kotlin Nanodegree </string>
-    <string name="notification_description">The Project 3 repository is downloaded</string>
-    <string name="notification_button">See changes</string>
+    <string name="notification_body">The Download process is complete</string>
+    <string name="notification_button_text">Go to Details</string>
+
 
     <!-- Loading Button text's to unanimated and animated state's-->
     <string name="button_initial_text">Download</string>
