@@ -23,8 +23,8 @@ import kotlinx.android.synthetic.main.content_main.*
 class MainActivity : AppCompatActivity() {
 
     private val STORAGE_PERMISSION_CODE: Int = 1000
-    private var downloadLink: String? = null
-    private var downloadedFileName: String? = null
+    private lateinit var downloadLink: String
+    private lateinit var downloadedFileName: String
 
     private lateinit var notificationManager: NotificationManager
 
@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         custom_button.setOnClickListener {
             if (buttonGroup_radioGroup.checkedRadioButtonId == -1) {
                 Toast.makeText(
-                        applicationContext,
+                        this,
                         "Please select the file to download",
                         Toast.LENGTH_SHORT
                 ).show()
@@ -83,16 +83,13 @@ class MainActivity : AppCompatActivity() {
                         buttonGroup_radioGroup.clearCheck()
                     }
                 }
-                downloadLink?.let { it1 -> checkPermissionAndDownload(it1) }
-                custom_button.buttonState = ButtonState.Loading
+                checkPermissionAndDownload(downloadLink)
             }
 
         }
 
         /******************************************************************************************/
     }
-
-
     private val receiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             DownloadManager.PAUSED_WAITING_FOR_NETWORK
@@ -121,25 +118,23 @@ class MainActivity : AppCompatActivity() {
             if(context != null){
                 when(rowAndColumnOfInterest){
                     //TODO 2.2
-                    8 -> {  notificationManager.sendNotification(
-                                context.getString(R.string.notification_title),
-                                context.getString(R.string.notification_body),
-                               "Successful",
-                                downloadedFileName!!,
-                                context
-                           )
-                           custom_button.buttonState = ButtonState.Completed
-                    }
-                    16 -> { notificationManager.sendNotification(
-                                context.getString(R.string.notification_title),
-                                context.getString(R.string.notification_body),
-                               "Failed",
-                                downloadedFileName!!,
-                                context
+                    8 -> notificationManager.sendNotification(
+                            context.getString(R.string.notification_title),
+                            context.getString(R.string.notification_body),
+                            "Successful",
+                            downloadedFileName,
+                            context
                     )
-                            custom_button.buttonState = ButtonState.Completed
-                    }
+
+                    16 -> notificationManager.sendNotification(
+                            context.getString(R.string.notification_title),
+                            context.getString(R.string.notification_body),
+                            "Failed",
+                            downloadedFileName,
+                            context
+                    )
                 }
+                custom_button.buttonState = ButtonState.Completed
             }
         }
     }
@@ -151,11 +146,16 @@ class MainActivity : AppCompatActivity() {
                 //show popup for runtime permission
                 requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
                         STORAGE_PERMISSION_CODE)
+
             }else{
+                //animation started
+                custom_button.buttonState = ButtonState.Loading
                 //permission already granted, perform download
              download(URL)
             }
         }else{
+            //animation started
+            custom_button.buttonState = ButtonState.Loading
             //system os is less than marshmallow, runtime permission not required, perform download
             download(URL)
         }
@@ -201,8 +201,7 @@ class MainActivity : AppCompatActivity() {
             notificationChannel.enableLights(true)
             notificationChannel.lightColor = Color.RED
             notificationChannel.enableVibration(true)
-            notificationChannel.description = "amaya"
-
+            notificationChannel.description = "This notification's are to 'notify' when the file is downloaded"
             val notificationManager = applicationContext.getSystemService(
                     NotificationManager::class.java
             )
@@ -227,13 +226,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    companion object {
-        private const val URL =
-            "https://github.com/udacity/nd940-c3-advanced-android-" +
-                    "programming-project-starter/archive/master.zip"
-        private const val CHANNEL_ID = "channelId"
     }
 
 }

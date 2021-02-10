@@ -25,4 +25,9 @@
     <string name="retrofitInfoText_radioButton">Retrofit - Type-safe HTTP client for Android and
         Java by Square, Inc</string>
     <string name="clear">Clear</string>
+
+    <!-- DetailActivity column 1 Text's -->
+    <string name= "row1_text">File name:</string>
+    <string name= "row2_text">Status:</string>
+    <string name="ok">OK</string>
 </resources>

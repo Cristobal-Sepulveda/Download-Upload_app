@@ -22,7 +22,9 @@ fun NotificationManager.sendNotification(notificationTitle:String,
      */
     //here we will use it to open Detail activity after the user press the notification
     val intent = Intent(applicationContext, DetailActivity::class.java)
-    /*intent.putExtra()*/
+    /** putExtra is a way to pass data to another activity */
+    intent.putExtra("downloadStatus", downloadStatus)
+    intent.putExtra("downloadedFileName", downloadedFileName)
     /** A PendingIntent grants rights to another application or the system to perfom an operation
      * on behalf of your application. A PendingIntent itself is simply a reference to a token
      * maintained by the system describing the original data used to retrieve it.
@@ -53,9 +55,7 @@ fun NotificationManager.sendNotification(notificationTitle:String,
             .addAction(R.drawable.assistant_back,
                     applicationContext.getString(R.string.notification_button_text),
                     contentPendingIntent)
-
     notify(Constants.MAIN_NOTIFICATION_ID, builder.build())
-
 
 }
 
